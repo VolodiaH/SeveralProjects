@@ -1,7 +1,6 @@
 #ifndef PWDGENERATOR_H
 #define PWDGENERATOR_H
 
-#include <array>
 #include <functional>
 #include <QString>
 
