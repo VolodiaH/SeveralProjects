@@ -6,13 +6,6 @@
 
 static constexpr std::array<char,32> Symbols { '`', '~', '!', '@', '#', '$', '%', '^', '&', '(', ')', '-', '_', '=', '+', '[', '{', '}', ']', ';', ':', '\'', '\\', '"', '<', ',', '>', '.', '?', '/', '|', '*'};
 
-enum class Character
-{
-    Letter,
-    Number,
-    Symbol
-};
-
 QString PwdGenerator::generatePassword(const int letters, const int numbers, const int symbols)
 {
     const int length{letters + numbers + symbols};
@@ -72,33 +65,6 @@ void PwdGenerator::addSymbol(QString &pwd)
     const char symbol { Symbols[index]};
     pwd.push_back(symbol);
     std::cerr << std::format("[addSymbol] symbol:'{}', index:{}\n", symbol, index);
-}
-
-void PwdGenerator::handleLetter(QString &pwd, int &lettersCount, int letters)
-{
-    if (letters && lettersCount < letters)
-    {
-        addLetter(pwd);
-        ++lettersCount;
-    }
-}
-
-void PwdGenerator::handleNumber(QString &pwd, int &numbersCount, int numbers)
-{
-    if (numbers && numbersCount < numbers)
-    {
-        addNumber(pwd);
-        ++numbersCount;
-    }
-}
-
-void PwdGenerator::handleSymbol(QString &pwd, int &symbolsCount, int symbols)
-{
-    if (symbols && symbolsCount < symbols)
-    {
-        addSymbol(pwd);
-        ++symbolsCount;
-    }
 }
 
 void PwdGenerator::processCharacter(QString &pwd, int &countee, int count, std::function<void(QString&)> addCharacter)
