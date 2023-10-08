@@ -3,8 +3,9 @@
 #include <random>
 #include <iostream>
 #include <format>
+#include <array>
 
-static constexpr std::array<char,32> Symbols { '`', '~', '!', '@', '#', '$', '%', '^', '&', '(', ')', '-', '_', '=', '+', '[', '{', '}', ']', ';', ':', '\'', '\\', '"', '<', ',', '>', '.', '?', '/', '|', '*'};
+static constexpr std::array Symbols { '`', '~', '!', '@', '#', '$', '%', '^', '&', '(', ')', '-', '_', '=', '+', '[', '{', '}', ']', ';', ':', '\'', '\\', '"', '<', ',', '>', '.', '?', '/', '|', '*'};
 
 QString PwdGenerator::generatePassword(const int letters, const int numbers, const int symbols)
 {
@@ -46,7 +47,7 @@ int PwdGenerator::randomNumber(const int min, const int max)
 
 void PwdGenerator::addLetter(QString &pwd)
 {
-    const bool upper = randomNumber(0,1);
+    const bool upper = static_cast<bool>(randomNumber(0,1));
     const char letter { static_cast<char>(upper ? randomNumber('A','Z') : randomNumber('a', 'z')) };
     pwd.push_back(letter);
     std::cerr << std::format("[addLetter] letter:{}\n", letter);
